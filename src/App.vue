@@ -1,17 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>{{ title }}</h1>
+  <p>Assalamualaikum..</p>
+  <div v-if="showModal">
+    <Modal :header="header" :text="text" theme="sale" @close="toggleModal" />
+  </div>
+  <button @click.alt="toggleModal">Open modal (alt)</button>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Modal from "./components/Modal";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: { Modal },
+  data() {
+    return {
+      title: "My First App",
+      header: "Sign up for the Giveaway!",
+      text: "Grab your ninja swag for half price!",
+      showModal: false,
+    };
+  },
+  methods: {
+    handleClick() {
+      console.log(this.$refs.name);
+    },
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
+  },
+};
 </script>
 
 <style>
